@@ -38,6 +38,7 @@ body {
     align-items: center;
     background-color: var(--prussian-blue-dark);
     color: var(--columbia-blue-light);
+    font-size: 1.4rem;
 }
 
 .nav-top {
@@ -59,7 +60,7 @@ body {
     padding: 0px 10%;
     background-color: var(--sky-blue);
     color: black;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     font-weight: 700;
     border: none;
     border-left: 1px solid var(--columbia-blue);
@@ -70,9 +71,7 @@ body {
 }
 
 .menu > button:hover {
-    /* -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1); */
-    transform: scaleY(1.03);
+    transform: scaleY(1.05);
     transition: 0.2s ease;
     cursor: pointer;
     box-shadow: 2px 2px 4px 0px var(--prussian-blue);
@@ -87,9 +86,13 @@ body {
 
 .menu ul {
     background-color: var(--columbia-blue-light);
-    padding: 10px 10%;
+    padding: 20px 7%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     list-style-type: none;
-
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
      /* testing styles - list item #2 */
     /* https://blog.hubspot.com/website/drop-down-animation */
     /* height: 200px; */
@@ -99,15 +102,15 @@ body {
 }
 
 .group-1 ul {
-    height: 165px;
+    height: 300px;
 }
 
 .group-2 ul {
-    height: 95px;
+    height: 170px;
 }
 
 .group-3 ul {
-    height: 95px;
+    height: 260px;
 }
 
 .menu.hidden ul {
@@ -123,10 +126,23 @@ body {
     width: 100%;
 }
 
-
-
 .menu li {
-    margin: 5px 0px;
+    /* margin: 10px 0px; */
+    padding: 10px 0px;
+}
+
+.menu li.selected {
+    background-color: var(--columbia-blue);
+    cursor: pointer;
+    transform: translateX(8px);
+    transition: all 0.5s ease;
+    margin-right: 22px;
+    border-radius: 8px;
+}
+
+.menu li span {
+    padding: 0px 10px;
+    font-size: 1.2rem;
 }
 
 .img-wrapper {
