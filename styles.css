@@ -66,12 +66,13 @@ body {
     border-right: 1px solid var(--columbia-blue);
     border-bottom: 2px solid var(--columbia-blue);
     box-shadow: 1px 1px 3px 0px var(--prussian-blue);
+    z-index: 1;
 }
 
 .menu > button:hover {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
+    /* -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1); */
+    transform: scaleY(1.03);
     transition: 0.2s ease;
     cursor: pointer;
     box-shadow: 2px 2px 4px 0px var(--prussian-blue);
@@ -80,17 +81,49 @@ body {
 .menu {
     background-color: transparent;
     z-index: 1;
-}
-
-.menu.hidden ul {
-    visibility: hidden;
+    /* display: block;
+    position: relative; */
 }
 
 .menu ul {
     background-color: var(--columbia-blue-light);
     padding: 10px 10%;
     list-style-type: none;
+
+     /* testing styles - list item #2 */
+    /* https://blog.hubspot.com/website/drop-down-animation */
+    /* height: 200px; */
+    opacity: 1;
+    transition: all 0.5s ease;
+    transform: translateY(0);
 }
+
+.group-1 ul {
+    height: 165px;
+}
+
+.group-2 ul {
+    height: 95px;
+}
+
+.group-3 ul {
+    height: 95px;
+}
+
+.menu.hidden ul {
+    /* testing styles - list item #2 */
+    /* https://blog.hubspot.com/website/drop-down-animation */
+    height: 0;
+    left: 0;
+    opacity: 0;
+    /* position: absolute; */
+    transition: all 1s ease;
+    transform: translateY(0);
+    top: 35px;
+    width: 100%;
+}
+
+
 
 .menu li {
     margin: 5px 0px;
