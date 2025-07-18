@@ -4,6 +4,8 @@
 // run.test();
 
 
+// TODO: set event listener to body (??) to call hideAllMenus when when a click event takes place outside of btns (may just put it on content wrapper if putting it on body causes errors)
+
 // query selectors
 const navMenu_allGroupDivs = document.querySelectorAll('.menu')
 // const btn_group1 = document.querySelector('.group-1 > button');
@@ -50,25 +52,6 @@ function selectOption(e) {
 function deselectOption(e) {
     e.target.classList.remove('selected');
 }
-
-// function deselectAllOptions(nodeList) {
-//     for (const option of nodeList) {
-//         if (option.classList.contains('selected')) {
-//             option.classList.remove('selected')
-//         }
-//     }
-// }
-
-// function changeSelect(e) {
-//     const optionGroup = e.target.parentNode.children;
-//     console.log(optionGroup)
-//     if (!e.target.classList.contains('selected')) {
-//         deselectAllOptions(optionGroup);
-//         selectOption(e.target)
-//     } else {
-//         deselectAllOptions(optionGroup);
-//     }
-// }
 
 // event listeners
 
