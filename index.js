@@ -7,6 +7,7 @@
 // TODO: set event listener to body (??) to call hideAllMenus when when a click event takes place outside of btns (may just put it on content wrapper if putting it on body causes errors)
 
 // query selectors
+const body = document.querySelector('body');
 const navMenu_allGroupDivs = document.querySelectorAll('.menu')
 // const btn_group1 = document.querySelector('.group-1 > button');
 // const btn_group2 = document.querySelector('.group-2 > button');
@@ -57,6 +58,9 @@ function deselectOption(e) {
 
 // TODO: set options to only initialize when menu is open and to remove listeners when menu is closed
 
+// UPD TODO: Change back to original init method, as attaching the initOptionEvents to initDisplayEvents caused the options to be re-initialized every time a menu option was clicked. 
+// Also, when used in combo with display:none, the alert would be triggered immediately upon closing 
+
 function initDisplayEvents(nodeList) {
     for (const element of nodeList) {
         element.addEventListener('click', (e) => {
@@ -76,6 +80,18 @@ function initOptionEvents(optionGroup) {
     }
 }
 
+function initFullDoc(body, nodeList) {
+    body.addEventListener('click', (e) => {
+        console.log(e.target)
+        console.log(e.target.closest('.menu'))
+        if (!e.target.closest('.menu')) {
+            hideAllMenus(nodeList)
+        }
+    })
+}
+
+
+
 function optionEvent(e) {
     const selection = e.target.textContent
     console.log(selection)
@@ -83,6 +99,7 @@ function optionEvent(e) {
 }
 
 initDisplayEvents(navMenu_allGroupDivs);
+initFullDoc(body, navMenu_allGroupDivs);
 initOptionEvents(options_group1);
 initOptionEvents(options_group2);
 initOptionEvents(options_group3);
