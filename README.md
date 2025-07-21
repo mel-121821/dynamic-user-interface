@@ -54,3 +54,6 @@ Tools:
 
 Get color palette from an image:
 https://coolors.co/image-picker
+
+Dropdown Animation Guide (used list item #2)
+https://blog.hubspot.com/website/drop-down-animation
