@@ -8,9 +8,9 @@
 
 const body = document.querySelector('body');
 const navMenu_allGroupDivs = document.querySelectorAll('.menu')
-const options_group1 = document.querySelectorAll('.group-1 li');
-const options_group2 = document.querySelectorAll('.group-2 li');
-const options_group3 = document.querySelectorAll('.group-3 li');
+const zones = document.querySelectorAll('.zones li');
+const shops = document.querySelectorAll('.shops li');
+const activities = document.querySelectorAll('.activities li');
 
 
 // Menu fn()s
@@ -80,8 +80,8 @@ function initFullDoc(body, nodeList) {
 
 initMenuEvents(navMenu_allGroupDivs);
 initFullDoc(body, navMenu_allGroupDivs);
-initOptionEvents(options_group1);
-initOptionEvents(options_group2);
-initOptionEvents(options_group3);
+initOptionEvents(zones);
+initOptionEvents(shops);
+initOptionEvents(activities);
 
 
