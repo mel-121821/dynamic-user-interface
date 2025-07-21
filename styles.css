@@ -26,9 +26,12 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 100px 70px minmax(calc(100vh - 220px), 1fr) 50px;
+    min-width: 800px;
     /* to prevent a scroll bar from appearing during group-3 btn hover effects. */
     /* Placed on body because scroll bars would be produced if placed on nav-top or group-3 > button, and btn would be cut off if placed on group-3 */
-    overflow-x: hidden;
+
+    /* UPD: No longer needed as transitions have been adjusted to not scale along the x axis as it was causing issues with layering and transitions */
+    /* overflow-x: hidden; */
 }
 
 .title {
@@ -96,6 +99,8 @@ body {
     height: 0;
     left: 0;
     opacity: 0;
+
+    /*  ul was inheriting padding from .menu ul, which made it  still clickable with a height of 0; */
     padding: 0;
     transition: all 1s ease;
     transform: translateY(0);
@@ -105,7 +110,7 @@ body {
 
 .menu ul {
     background-color: var(--columbia-blue-light);
-    padding: 20px 7%;
+    padding: 20px 6%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     list-style-type: none;
