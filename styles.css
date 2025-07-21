@@ -4,6 +4,7 @@
 --blue-green: hsla(198, 48%, 50%, 1);
 --prussian-blue: hsla(208, 84%, 17%, 1);
 --prussian-blue-dark: rgb(4, 30, 52);
+--columbia-blue-med: rgb(190, 223, 249);
 --columbia-blue: hsla(205, 60%, 87%, 1);
 --columbia-blue-light: rgb(228, 238, 245);
 --cerulean: hsla(201, 60%, 42%, 1);
@@ -27,11 +28,6 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 100px 70px minmax(calc(100vh - 220px), 1fr) 50px;
     min-width: 800px;
-    /* to prevent a scroll bar from appearing during group-3 btn hover effects. */
-    /* Placed on body because scroll bars would be produced if placed on nav-top or group-3 > button, and btn would be cut off if placed on group-3 */
-
-    /* UPD: No longer needed as transitions have been adjusted to not scale along the x axis as it was causing issues with layering and transitions */
-    /* overflow-x: hidden; */
 }
 
 .title {
@@ -50,10 +46,6 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-/* .menu {
-    width: 100%;
-} */
-
 .menu > button {
     width: 100%;
     height: 70px;
@@ -70,7 +62,6 @@ body {
     border-right: 1px solid var(--columbia-blue);
     border-bottom: 2px solid var(--columbia-blue);
     box-shadow: 1px 1px 3px 0px var(--prussian-blue);
-    z-index: 1;
 }
 
 .menu > button:hover {
@@ -84,28 +75,14 @@ body {
     background-color: transparent;
     z-index: 1;
     height: 0;
-    /* display: block;
-    position: relative; */
 }
 
-/* TODO: Fix ul so that it is not clickable when collapsed! */
 .menu.hidden ul {
-    /* testing styles - list item #2 */
-    /* https://blog.hubspot.com/website/drop-down-animation */
-
-    /* fixed clickable hidden elements, but caused animations to stop working */
-    /* display: none; */
-
     height: 0;
-    left: 0;
     opacity: 0;
-
-    /*  ul was inheriting padding from .menu ul, which made it  still clickable with a height of 0; */
     padding: 0;
     transition: all 1s ease;
     transform: translateY(0);
-    top: 35px;
-    width: 100%;
 }
 
 .menu ul {
@@ -116,51 +93,39 @@ body {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-
-     /* testing styles - list item #2 */
-    /* https://blog.hubspot.com/website/drop-down-animation */
     opacity: 1;
     transition: all 0.5s ease;
     transform: translateY(0);
 }
 
-.group-1 ul {
+.zones ul {
     height: 300px;
 }
 
-.group-1.hidden ul li {
-    /* height: 0; */
-    display: none;
-}
-
-.group-2 ul {
+.shops ul {
     height: 170px;
 }
 
-.group-2.hidden ul li {
-    display: none
-}
-
-.group-3 ul {
+.activities ul {
     height: 260px;
 }
 
-.group-3.hidden ul li {
-    display: none
+.zones.hidden ul li,
+.shops.hidden ul li,
+.activities.hidden ul li {
+    display: none;
 }
 
-
 .menu li {
-    /* margin: 10px 0px; */
     padding: 10px 0px;
 }
 
 .menu li.selected {
-    background-color: var(--columbia-blue);
+    background-color: var(--columbia-blue-med);
     cursor: pointer;
     transform: translateX(8px);
     transition: all 0.5s ease;
-    margin-right: 22px;
+    margin-right: 16px;
     border-radius: 8px;
 }
 
