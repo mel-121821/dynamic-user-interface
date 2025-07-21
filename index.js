@@ -16,8 +16,8 @@ const options_group1 = document.querySelectorAll('.group-1 li');
 const options_group2 = document.querySelectorAll('.group-2 li');
 const options_group3 = document.querySelectorAll('.group-3 li');
 
-console.log(navMenu_allGroupDivs)
-console.log(options_group1)
+// console.log(navMenu_allGroupDivs)
+// console.log(options_group1)
 
 // Menu fn()s
 
@@ -55,19 +55,32 @@ function deselectOption(e) {
 
 // event listeners
 
+// TODO: set options to only initialize when menu is open and to remove listeners when menu is closed
+
 function initDisplayEvents(nodeList) {
     for (const element of nodeList) {
-        element.addEventListener('click', (e) => toggleMenu(e, nodeList))
+        element.addEventListener('click', (e) => {
+            toggleMenu(e, nodeList);
+            // initOptionEvents(e)
+        });
     }
 }
 
 function initOptionEvents(optionGroup) {
+    // const optionGroup = e.target.parentNode.childNodes.item(3).children;
+    console.log(optionGroup)
     for (const option of optionGroup) {
         option.addEventListener('mouseenter', (e) => selectOption(e));
         option.addEventListener('mouseleave', (e) => deselectOption(e));
+        option.addEventListener('click', (e) => optionEvent(e));
     }
 }
 
+function optionEvent(e) {
+    const selection = e.target.textContent
+    console.log(selection)
+    alert(`You have selected ${e.target.textContent}`)
+}
 
 initDisplayEvents(navMenu_allGroupDivs);
 initOptionEvents(options_group1);
