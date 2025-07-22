@@ -167,7 +167,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    padding: 50px 0px;
+    padding: 50px 50px;
 }
 
 .carousel-wrapper,
@@ -175,16 +175,14 @@ body {
     grid-row: 1;
     grid-column: 1;
     width: 100%;
-    max-height: 100%;
+    height: 100%;
     background-color: var(--columbia-blue);
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
+    grid-column-gap: 10px;
 }
 
 .img-wrapper {
-    /* position: absolute; */
-    background-color: transparent;
-    max-height: 100%;
     z-index: 1;
 }
 
@@ -195,13 +193,14 @@ body {
 
 .img-wrapper div {
     grid-area: 1 / 1 / 2 / 2;
-    max-height: 100%;
 }
 
 .img-wrapper div.img-selected {
     grid-area: 1 / 2 / 2 / 3;
-    border: 1px solid black;
-    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    /* border: 1px solid black; */
+    outline: 0;
 }
 
 .img-wrapper div.fade-in {
@@ -219,24 +218,44 @@ img {
     /* max-height: 100%; */
     object-fit: cover;
     object-position: 50% 80%;
-    background-color: white;
 } 
 
-.promo,
+.fade-in-display {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.564) 50%, var(--columbia-blue-light));
+    box-shadow: -2px 1px 5px 0px rgb(173, 173, 173);
+}
+
+.img-wrapper div.fade-in img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0% 0%;
+}
+
+/* .promo,
 .central-display,
 .fade-in-display {
     border: 1px solid black;
-}
+} */
 
 .promo {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
-    padding: 0px 150px;
+
+    /* Fixed padding as it was causing overflow into other elements, which offset carousel/img wrapper alignments */
+    padding: 0px 140px;
 }
 
 .central-display {
+    grid-area: 1 / 2 / 2 / 3;
+    width: 100%;
     background-color: transparent;
+    /* border: 1px solid rgb(178, 0, 0); */
+    outline: 0;
+    box-shadow: 8px 8px 8px 0px gray;
+    /* margin-right: 10px; */
 }
 
 .footer {
