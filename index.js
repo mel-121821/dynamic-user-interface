@@ -4,6 +4,8 @@
 // run.test();
 
 
+// Dropdown
+
 // Query Selectors
 
 const body = document.querySelector('body');
@@ -84,4 +86,49 @@ initOptionEvents(zones);
 initOptionEvents(shops);
 initOptionEvents(activities);
 
+
+// Carousel
+
+const imgCache = document.querySelectorAll('.img-wrapper > div')
+
+function setDisplayDiv(index, imgCache) {
+    imgCache[index].classList.add('img-selected');
+}
+
+function setFadeIn(index, imgCache) {
+    imgCache[index].classList.add('fade-in')
+}
+
+function clearAll(imgCache) {
+    for (const div of imgCache) {
+        div.classList = '';
+    }
+}
+
+function getIndexOfDisplayed(imgCache) {
+    let divIndex;
+    imgCache.forEach((div, index) => {
+        if (div.classList.contains('img-selected')) {
+            divIndex = index;
+            console.log(`Currently displayed: ${divIndex}`)
+        }
+    })   
+    return divIndex;
+}
+
+function shiftNext(imgCache) {
+    let nextToDisplay = (((getIndexOfDisplayed(imgCache))+1) % imgCache.length);
+    let nextToFadeIn = (((getIndexOfDisplayed(imgCache)) +2) % imgCache.length);
+
+    clearAll(imgCache);
+    setDisplayDiv(nextToDisplay, imgCache);
+    setFadeIn(nextToFadeIn, imgCache);
+}
+
+function autoRotate(imgCache) {
+    setInterval(shiftNext, 6000, imgCache)
+}
+
+
+autoRotate(imgCache);
 
