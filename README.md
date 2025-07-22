@@ -84,3 +84,6 @@ Resources:
 
 How to add an event listener to a whole document, excluding an element (and its children):
 https://www.reddit.com/r/learnjavascript/comments/j1kh2e/closing_a_div_when_clicking_outside_of_it/
+
+Using the % operator to restart a loop after getting to the end:
+https://stackoverflow.com/questions/52994309/restart-iterating-for-loop-from-beginning-once-looping-ends-js
