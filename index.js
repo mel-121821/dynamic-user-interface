@@ -165,8 +165,8 @@ function changeDisplay(imgCache, selectorBtns, index) {
     setFadeIn(((getIndexOfNext(imgCache))), imgCache)
 }
 
-function autoRotate(imgCache) {
-    setInterval(shiftNext, 6000, imgCache)
+function autoRotate(imgCache, selectorBtns) {
+    setInterval(shiftNext, 5000, imgCache, selectorBtns)
 }
 
 // Event listeners
@@ -182,7 +182,7 @@ function initSelectorBtns(selectorBtns, imgCache) {
     })
 }
 
-autoRotate(imgCache);
+autoRotate(imgCache, selectorBtns);
 initArrowBtns(imgCache, selectorBtns);
 initSelectorBtns(selectorBtns, imgCache);
 
