@@ -26,7 +26,7 @@ html {
 body {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 70px minmax(calc(100vh - 220px), 1fr) 50px;
+    grid-template-rows: 100px 70px minmax(calc(100vh - 220px), 1fr) 60px;
     min-width: 1200px;
 }
 
@@ -345,9 +345,23 @@ body {
 
 .footer {
     grid-area: 4 / 1 / 5 / 2;
-    background-color: black;
+    background-color: var(--prussian-blue);
     color: var(--columbia-blue-light);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+.svg {
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.svg:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.3s ease;
 }
