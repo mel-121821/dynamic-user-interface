@@ -72,7 +72,7 @@ function initOptionEvents(optionGroup) {
 
 function initFullDoc(body, nodeList) {
     body.addEventListener('click', (e) => {
-        console.log(`Target is not a child of .menu: ${!e.target.closest('.menu')}`);
+        // console.log(`Target is not a child of .menu: ${!e.target.closest('.menu')}`);
         if (!e.target.closest('.menu')) {
             hideAllMenus(nodeList);
         }
@@ -90,6 +90,7 @@ initOptionEvents(activities);
 // Carousel
 
 const imgCache = document.querySelectorAll('.img-wrapper > div')
+const display = document.querySelector('.central-display')
 
 function setDisplayDiv(index, imgCache) {
     imgCache[index].classList.add('img-selected');
@@ -105,30 +106,73 @@ function clearAll(imgCache) {
     }
 }
 
-function getIndexOfDisplayed(imgCache) {
+function getIndexOfCurrentImg(imgCache) {
     let divIndex;
     imgCache.forEach((div, index) => {
         if (div.classList.contains('img-selected')) {
             divIndex = index;
-            console.log(`Currently displayed: ${divIndex}`)
+            // console.log(`Currently displayed: ${divIndex}`)
         }
     })   
     return divIndex;
 }
 
+function getNextToDisplay(imgCache) {
+    let indexOfNextDisp = ((getIndexOfCurrentImg(imgCache)) +1) % imgCache.length;
+    return indexOfNextDisp
+}
+
+function getPrevDisplayed(imgCache) {
+    let current = getIndexOfCurrentImg(imgCache)
+    let indexOfPrevDisp;
+    if (current === 0) {
+        current = 4;
+    } 
+    indexOfPrevDisp = current - 1
+    return indexOfPrevDisp
+}
+
+function getNextToFadeIn(imgCache) {
+    let indexOfNextFade = ((getIndexOfCurrentImg(imgCache)) +2) % imgCache.length;
+    return indexOfNextFade
+}
+
+function getPrevFadeIn(imgCache) {
+    let indexOfPrevFade = getIndexOfCurrentImg(imgCache);
+    return indexOfPrevFade
+}
+
 function shiftNext(imgCache) {
-    let nextToDisplay = (((getIndexOfDisplayed(imgCache))+1) % imgCache.length);
-    let nextToFadeIn = (((getIndexOfDisplayed(imgCache)) +2) % imgCache.length);
+    const nextToDisplay = getNextToDisplay(imgCache)
+    const nextToFadeIn = getNextToFadeIn(imgCache)
 
     clearAll(imgCache);
     setDisplayDiv(nextToDisplay, imgCache);
     setFadeIn(nextToFadeIn, imgCache);
 }
 
+function shiftPrevious(imgCache){
+    const prevDisplayed = getPrevDisplayed(imgCache);
+    const prevFadeIn = getPrevFadeIn(imgCache);
+
+    console.log(prevDisplayed)
+    console.log(prevFadeIn);
+
+    clearAll(imgCache);
+    setDisplayDiv(prevDisplayed, imgCache);
+    setFadeIn(prevFadeIn, imgCache);
+}
+
 function autoRotate(imgCache) {
     setInterval(shiftNext, 6000, imgCache)
 }
 
+// autoRotate(imgCache);
 
-autoRotate(imgCache);
+display.addEventListener('click', () => shiftPrevious(imgCache));
 
+// console.log(1 % 4)
+// console.log(2 % 4)
+// console.log(3 % 4)
+// console.log(4 % 4)
+// console.log(-2 % 4)
