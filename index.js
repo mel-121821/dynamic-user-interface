@@ -90,7 +90,6 @@ initOptionEvents(activities);
 // Carousel
 
 const imgCache = document.querySelectorAll('.img-wrapper > div')
-// const display = document.querySelector('.central-display')
 const selectorBtns = document.querySelectorAll('.img-selector button')
 const leftArrow = document.querySelector('.left-arrow button')
 const rightArrow = document.querySelector('.right-arrow button')
@@ -126,62 +125,34 @@ function getIndexOfCurrentImg(imgCache) {
     imgCache.forEach((div, index) => {
         if (div.classList.contains('img-selected')) {
             divIndex = index;
-            // console.log(`Currently displayed: ${divIndex}`)
         }
     })   
     return divIndex;
 }
 
 function getIndexOfNext(imgCache) {
-    let indexOfNextDisp = ((getIndexOfCurrentImg(imgCache)) +1) % imgCache.length;
-    return indexOfNextDisp
+    let indexOfNext = ((getIndexOfCurrentImg(imgCache)) +1) % imgCache.length;
+    return indexOfNext
 }
 
 function getPrevDisplayed(imgCache) {
     let current = getIndexOfCurrentImg(imgCache)
-    let indexOfPrevDisp;
+    let indexOfPrevious;
     if (current === 0) {
         current = 4;
     } 
-    indexOfPrevDisp = current - 1
-    return indexOfPrevDisp
-}
-
-function getNextToFadeIn(imgCache) {
-    let indexOfNextFade = ((getIndexOfCurrentImg(imgCache)) +2) % imgCache.length;
-    return indexOfNextFade
-}
-
-function getPrevFadeIn(imgCache) {
-    let indexOfPrevFade = getIndexOfCurrentImg(imgCache);
-    return indexOfPrevFade
+    indexOfPrevious = current - 1
+    return indexOfPrevious
 }
 
 function shiftNext(imgCache, selectorBtns) {
     const nextToDisplay = getIndexOfNext(imgCache)
-    const nextToFadeIn = getNextToFadeIn(imgCache)
-
     changeDisplay(imgCache, selectorBtns, nextToDisplay);
-    // clearImages(imgCache);
-    // clearActiveBtn(selectorBtns)
-
-    // setDisplayDiv(nextToDisplay, imgCache);
-    // setActiveBtn(nextToDisplay, selectorBtns)
-    // setFadeIn(nextToFadeIn, imgCache);
 }
 
 function shiftPrevious(imgCache, selectorBtns){
     const prevDisplayed = getPrevDisplayed(imgCache);
-    const prevFadeIn = getPrevFadeIn(imgCache);
-
     changeDisplay(imgCache, selectorBtns, prevDisplayed);
-
-    // clearImages(imgCache);
-    // clearActiveBtn(selectorBtns);
-
-    // setDisplayDiv(prevDisplayed, imgCache);
-    // setActiveBtn(prevDisplayed, selectorBtns)
-    // setFadeIn(prevFadeIn, imgCache);
 }
 
 function changeDisplay(imgCache, selectorBtns, index) {
@@ -190,6 +161,7 @@ function changeDisplay(imgCache, selectorBtns, index) {
 
     setDisplayDiv(index, imgCache);
     setActiveBtn(index, selectorBtns);
+    // This line works in all cases because the display div has been set before it has been called
     setFadeIn(((getIndexOfNext(imgCache))), imgCache)
 }
 
@@ -210,9 +182,7 @@ function initSelectorBtns(selectorBtns, imgCache) {
     })
 }
 
-// autoRotate(imgCache);
-initArrowBtns(imgCache, selectorBtns)
-initSelectorBtns(selectorBtns, imgCache)
-
-// display.addEventListener('click', () => shiftPrevious(imgCache));
+autoRotate(imgCache);
+initArrowBtns(imgCache, selectorBtns);
+initSelectorBtns(selectorBtns, imgCache);
 
