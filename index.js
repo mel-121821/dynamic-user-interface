@@ -90,7 +90,12 @@ initOptionEvents(activities);
 // Carousel
 
 const imgCache = document.querySelectorAll('.img-wrapper > div')
-const display = document.querySelector('.central-display')
+// const display = document.querySelector('.central-display')
+const selectorBtns = document.querySelectorAll('.img-selector button')
+const leftArrow = document.querySelector('.left-arrow button')
+const rightArrow = document.querySelector('.right-arrow button')
+
+console.log(selectorBtns)
 
 function setDisplayDiv(index, imgCache) {
     imgCache[index].classList.add('img-selected');
@@ -100,9 +105,19 @@ function setFadeIn(index, imgCache) {
     imgCache[index].classList.add('fade-in')
 }
 
-function clearAll(imgCache) {
+function setActiveBtn(index, selectorBtns) {
+    selectorBtns[index].classList.add('active')
+}
+
+function clearImages(imgCache) {
     for (const div of imgCache) {
         div.classList = '';
+    }
+}
+
+function clearActiveBtn(selectorBtns) {
+    for (const btn of selectorBtns) {
+        btn.classList = '';
     }
 }
 
@@ -117,7 +132,7 @@ function getIndexOfCurrentImg(imgCache) {
     return divIndex;
 }
 
-function getNextToDisplay(imgCache) {
+function getIndexOfNext(imgCache) {
     let indexOfNextDisp = ((getIndexOfCurrentImg(imgCache)) +1) % imgCache.length;
     return indexOfNextDisp
 }
@@ -142,37 +157,62 @@ function getPrevFadeIn(imgCache) {
     return indexOfPrevFade
 }
 
-function shiftNext(imgCache) {
-    const nextToDisplay = getNextToDisplay(imgCache)
+function shiftNext(imgCache, selectorBtns) {
+    const nextToDisplay = getIndexOfNext(imgCache)
     const nextToFadeIn = getNextToFadeIn(imgCache)
 
-    clearAll(imgCache);
-    setDisplayDiv(nextToDisplay, imgCache);
-    setFadeIn(nextToFadeIn, imgCache);
+    changeDisplay(imgCache, selectorBtns, nextToDisplay);
+    // clearImages(imgCache);
+    // clearActiveBtn(selectorBtns)
+
+    // setDisplayDiv(nextToDisplay, imgCache);
+    // setActiveBtn(nextToDisplay, selectorBtns)
+    // setFadeIn(nextToFadeIn, imgCache);
 }
 
-function shiftPrevious(imgCache){
+function shiftPrevious(imgCache, selectorBtns){
     const prevDisplayed = getPrevDisplayed(imgCache);
     const prevFadeIn = getPrevFadeIn(imgCache);
 
-    console.log(prevDisplayed)
-    console.log(prevFadeIn);
+    changeDisplay(imgCache, selectorBtns, prevDisplayed);
 
-    clearAll(imgCache);
-    setDisplayDiv(prevDisplayed, imgCache);
-    setFadeIn(prevFadeIn, imgCache);
+    // clearImages(imgCache);
+    // clearActiveBtn(selectorBtns);
+
+    // setDisplayDiv(prevDisplayed, imgCache);
+    // setActiveBtn(prevDisplayed, selectorBtns)
+    // setFadeIn(prevFadeIn, imgCache);
+}
+
+function changeDisplay(imgCache, selectorBtns, index) {
+    clearImages(imgCache);
+    clearActiveBtn(selectorBtns);
+
+    setDisplayDiv(index, imgCache);
+    setActiveBtn(index, selectorBtns);
+    setFadeIn(((getIndexOfNext(imgCache))), imgCache)
 }
 
 function autoRotate(imgCache) {
     setInterval(shiftNext, 6000, imgCache)
 }
 
+// Event listeners
+
+function initArrowBtns(imgCache, selectorBtns) {
+    leftArrow.addEventListener('click', () => shiftPrevious(imgCache, selectorBtns))
+    rightArrow.addEventListener('click', () => shiftNext(imgCache, selectorBtns))
+}
+
+function initSelectorBtns(selectorBtns, imgCache) {
+    selectorBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => changeDisplay(imgCache, selectorBtns, index))
+    })
+}
+
 // autoRotate(imgCache);
+initArrowBtns(imgCache, selectorBtns)
+initSelectorBtns(selectorBtns, imgCache)
 
-display.addEventListener('click', () => shiftPrevious(imgCache));
+// display.addEventListener('click', () => shiftPrevious(imgCache));
 
-// console.log(1 % 4)
-// console.log(2 % 4)
-// console.log(3 % 4)
-// console.log(4 % 4)
-// console.log(-2 % 4)
