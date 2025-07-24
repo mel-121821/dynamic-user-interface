@@ -72,13 +72,13 @@ function initOptionEvents(optionGroup) {
 
 function initFullDoc(body, nodeList) {
     body.addEventListener('click', (e) => {
-        // console.log(`Target is not a child of .menu: ${!e.target.closest('.menu')}`);
         if (!e.target.closest('.menu')) {
             hideAllMenus(nodeList);
         }
     })
 }
 
+// Call init fn()s
 
 initMenuEvents(navMenu_allGroupDivs);
 initFullDoc(body, navMenu_allGroupDivs);
@@ -89,12 +89,15 @@ initOptionEvents(activities);
 
 // Carousel
 
+// Query Selectors
+
 const imgCache = document.querySelectorAll('.img-wrapper > div')
 const selectorBtns = document.querySelectorAll('.img-selector button')
 const leftArrow = document.querySelector('.left-arrow button')
 const rightArrow = document.querySelector('.right-arrow button')
 
-console.log(selectorBtns)
+
+// Carousel fn()s
 
 function setDisplayDiv(index, imgCache) {
     imgCache[index].classList.add('img-selected');
@@ -158,10 +161,8 @@ function shiftPrevious(imgCache, selectorBtns){
 function changeDisplay(imgCache, selectorBtns, index) {
     clearImages(imgCache);
     clearActiveBtn(selectorBtns);
-
     setDisplayDiv(index, imgCache);
     setActiveBtn(index, selectorBtns);
-    // This line works in all cases because the display div has been set before it has been called
     setFadeIn(((getIndexOfNext(imgCache))), imgCache)
 }
 
@@ -169,7 +170,8 @@ function autoRotate(imgCache, selectorBtns) {
     setInterval(shiftNext, 5000, imgCache, selectorBtns)
 }
 
-// Event listeners
+
+// Init Events
 
 function initArrowBtns(imgCache, selectorBtns) {
     leftArrow.addEventListener('click', () => shiftPrevious(imgCache, selectorBtns))
@@ -181,6 +183,9 @@ function initSelectorBtns(selectorBtns, imgCache) {
         btn.addEventListener('click', () => changeDisplay(imgCache, selectorBtns, index))
     })
 }
+
+
+// Call init fn()s and autoRotate
 
 autoRotate(imgCache, selectorBtns);
 initArrowBtns(imgCache, selectorBtns);
